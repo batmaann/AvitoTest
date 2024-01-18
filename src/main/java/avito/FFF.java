@@ -1,2 +1,4 @@
-package avito.appConfig;public class FFF {
+package avito;
+
+public class FFF {
 }
