@@ -1,9 +1,11 @@
 package avito_test;
 
 import avito.pageObject.MainPage;
+import jdk.jfr.Description;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -34,6 +36,8 @@ public class CategoryTest {
     }
 
     @Test
+    @DisplayName("Проверка категория")
+    @Description("null")
     public void choiceCategory() {
         mainPage.clickСategoriesButton();
         for (int i = 2; i < 10; i++) {
