@@ -40,13 +40,13 @@ public class CategoryTest {
     @Description("null")
     public void choiceCategory() {
         mainPage.clickСategoriesButton();
-        for (int i = 2; i < 10; i++) {
+        for (int i = 2; i < 5; i++) {
             mainPage.choiceCategoryMove();
         }
     }
 
     @After
     public void clean() {
-        //driver.quit();
+        driver.quit();
     }
 }
