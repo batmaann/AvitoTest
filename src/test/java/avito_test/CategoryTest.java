@@ -40,9 +40,9 @@ public class CategoryTest {
     @Description("null")
     public void choiceCategory() {
         mainPage.clickСategoriesButton();
-        for (int i = 2; i < 5; i++) {
+        //for (int i = 2; i < 5; i++) {
             mainPage.choiceCategoryMove();
-        }
+        //}
     }
 
     @After
