@@ -32,8 +32,6 @@ public class CategoryTest {
         System.setProperty("webdriver.gecko.driver", "/Users/prime/MK/Education/AvitoTest/drivers/geckodriver");
         driver.get(base_URL);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-
-
         mainPage.actionStepBefore();
     }
 

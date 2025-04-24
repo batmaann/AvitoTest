@@ -45,23 +45,11 @@ public class MainPage {
     public void actionStepBefore() {
         try {
             clickElement(beforeButton);
-        } catch (Exception e) {
-            System.out.println("[WARN] Не удалось кликнуть beforeButton: " + e.getMessage());
-        }
-        try {
             clickElement(goodButton);
-        } catch (Exception e) {
-            System.out.println("[WARN] Не удалось кликнуть goodButton: " + e.getMessage());
-        }
-        try {
             clickElement(yesButton);
-        } catch (Exception e) {
-            System.out.println("[WARN] Не удалось кликнуть yesButton: " + e.getMessage());
-        }
-        try {
             clickElement(closeInfoButton);
         } catch (Exception e) {
-            System.out.println("[WARN] Не удалось кликнуть closeInfoButton: " + e.getMessage());
+            System.out.println("[WARN] Не удалось закрыть всплывающие окно: " + e.getMessage());
         }
     }
 
