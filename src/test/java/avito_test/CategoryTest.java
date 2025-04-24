@@ -44,13 +44,13 @@ public class CategoryTest {
 
         mainPage.actionStepBefore();
 
-        Sleeper sleeper = Sleeper.SYSTEM_SLEEPER;
-        try {
-            sleeper.sleep(Duration.ofSeconds(21)); // Работает в Selenium 4.3+
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            throw new RuntimeException("Sleep interrupted", e);
-        }
+//        Sleeper sleeper = Sleeper.SYSTEM_SLEEPER;
+//        try {
+//            sleeper.sleep(Duration.ofSeconds(5)); // Работает в Selenium 4.3+
+//        } catch (InterruptedException e) {
+//            Thread.currentThread().interrupt();
+//            throw new RuntimeException("Sleep interrupted", e);
+//        }
 
     }
 

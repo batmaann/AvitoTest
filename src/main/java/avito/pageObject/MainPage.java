@@ -20,29 +20,18 @@ public class MainPage {
     private By beforeButton = By.xpath("//button[span/span[text()='Наконец-то']]");
     private By goodButton = By.xpath("//button[span/span[text()='Хорошо']]");
     private By yesButton = By.xpath("//button[span[text()='Да']]");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    private By closeInfoButton = By.xpath("//span[contains(@class, 'top-banner-module-cross')]");
 
 
     //методы
     public void clickСategoriesButton() {
         webDriver.findElement(categoriesButton).click();
     }
+
     public void clickСityButton() {
         webDriver.findElement(chocieButton).click();
     }
+
     public void choiceCategoryMove() {
         webDriver.findElement(realtyСategoryButton).click();
     }
@@ -53,15 +42,12 @@ public class MainPage {
     }
 
 
-
     public void actionStepBefore() {
         try {
             clickElement(beforeButton);
         } catch (Exception e) {
             System.out.println("[WARN] Не удалось кликнуть beforeButton: " + e.getMessage());
         }
-
-        // Клик на goodButton (если не получится - пропускаем)
         try {
             clickElement(goodButton);
         } catch (Exception e) {
@@ -71,6 +57,11 @@ public class MainPage {
             clickElement(yesButton);
         } catch (Exception e) {
             System.out.println("[WARN] Не удалось кликнуть yesButton: " + e.getMessage());
+        }
+        try {
+            clickElement(closeInfoButton);
+        } catch (Exception e) {
+            System.out.println("[WARN] Не удалось кликнуть closeInfoButton: " + e.getMessage());
         }
     }
 
