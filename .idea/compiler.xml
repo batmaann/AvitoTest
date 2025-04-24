@@ -9,5 +9,8 @@
         <module name="AvitoTest" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Praktikum.Sprint4" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
