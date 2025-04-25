@@ -11,6 +11,8 @@ public class MainPage {
         this.webDriver = webDriver;
     }
 
+    int sequenceNumber;
+
     WebDriver webDriver;
     //локаторы
     private By categoriesButto = By.className("top-rubricator-newWrapper-VLDwY");
@@ -22,6 +24,13 @@ public class MainPage {
     private By yesButton = By.xpath("//button[span[text()='Да']]");
     private By closeInfoButton = By.xpath("//span[contains(@class, 'top-banner-module-cross')]");
     private By likeButton = By.xpath("//div[@data-marker='favorite']");
+    //private By likeInCardButton = By.xpath("//div[contains(@class, 'styles-item-')][sequenceNumber]//*[@data-marker='favorite']");
+
+    private By likeInCardButton = By.xpath("//div[contains(@class, 'styles-item-')][" + sequenceNumber + "]//*[@data-marker='favorite']");
+
+    private By cardOnTheMainPage = By.xpath("//div[contains(@class, 'styles-item-')]");
+
+    //div[contains(@class, 'styles-item-')]//*[@data-marker='favorite']
 
 
     //методы
@@ -60,6 +69,15 @@ public class MainPage {
 
     public void clickLikeButton() {
         webDriver.findElement(likeButton).click();
+    }
+
+
+    public void clickLikeOnFreeCards() {
+
+        for (int i = 1; i <= 3; i++) {
+            clickElement(likeInCardButton);
+
+        }
     }
 
 

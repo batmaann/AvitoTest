@@ -39,12 +39,7 @@ public class CategoryTest  {
     @DisplayName("Проверка категория")
     @Description("null")
     public void addFavoriteInMain() {
-        int likes = 6;
-        int like = 0;
-        while (like < likes) {
-            mainPage.clickLikeButton();
-            like++;
-        }
+        mainPage.clickLikeOnFreeCards();
 
 
 
