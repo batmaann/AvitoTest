@@ -21,6 +21,7 @@ public class MainPage {
     private By goodButton = By.xpath("//button[span/span[text()='Хорошо']]");
     private By yesButton = By.xpath("//button[span[text()='Да']]");
     private By closeInfoButton = By.xpath("//span[contains(@class, 'top-banner-module-cross')]");
+    private By likeButton = By.xpath("//div[@data-marker='favorite']");
 
 
     //методы
@@ -55,6 +56,10 @@ public class MainPage {
 
     public void withLocator(Consumer<By> action) {
         action.accept(beforeButton); // Передаём приватный локатор в лямбду
+    }
+
+    public void clickLikeButton() {
+        webDriver.findElement(likeButton).click();
     }
 
 

@@ -22,7 +22,7 @@ import java.time.Duration;
 import static avito.appConfig.AppConfig.base_URL;
 import static java.lang.Thread.sleep;
 
-public class CategoryTest {
+public class CategoryTest  {
     WebDriver driver = new FirefoxDriver();
     MainPage mainPage = new MainPage(driver);
     Actions actions = new Actions(driver);
@@ -38,9 +38,16 @@ public class CategoryTest {
     @Test
     @DisplayName("Проверка категория")
     @Description("null")
-    public void choiceCategory() {
+    public void addFavoriteInMain() {
+        int likes = 6;
+        int like = 0;
+        while (like < likes) {
+            mainPage.clickLikeButton();
+            like++;
+        }
 
-        mainPage.actionStepBefore();
+
+
 
 //        Sleeper sleeper = Sleeper.SYSTEM_SLEEPER;
 //        try {
