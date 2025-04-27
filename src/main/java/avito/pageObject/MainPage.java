@@ -74,46 +74,45 @@ public class MainPage {
     }
 
 
-    public void clickLikeOnCards(int countLikes) {
-        for (int i = 1; i <= countLikes; i++) {
-            By likeInCardButton = By.xpath("//div[contains(@class, 'styles-item-')][" + i + "]//*[@data-marker='favorite']");
-            clickElement(likeInCardButton);
-        }
-    }
-
     public void clickLikeOnCards1(int countLikes) {
         for (int i = 1; i <= countLikes; i++) {
             By likeInCardButton = By.xpath("//div[contains(@class, 'styles-item-')][" + i + "]//*[@data-marker='favorite']");
-
             boolean isClicked = false;
             int attempts = 0;
 
-            while (!isClicked && attempts < 5) { // максимум 5 попыток на каждый элемент
+            while (!isClicked && attempts < 5) {
                 try {
-                    clickElement(likeInCardButton); // Пытаемся кликнуть
-                    isClicked = true; // Успех - выходим
+                    clickElement(likeInCardButton);
+                    isClicked = true;
                 } catch (NoSuchElementException e) {
                     System.out.println("[INFO] Элемент " + i + " не найден, скроллим к нему...");
                     scrollToElement(likeInCardButton); // Скроллим к элементу
                     attempts++;
                 }
             }
-
             if (!isClicked) {
                 System.out.println("[WARN] Не удалось найти и кликнуть по элементу с номером " + i);
+            } else {
+                // ➡️ После успешного клика проверяем, что лайк активирован
+                if (isLikeActive(likeInCardButton)) {
+                    System.out.println("[INFO] Лайк успешно поставлен на карточке " + i);
+                } else {
+                    System.out.println("[ERROR] Лайк НЕ был поставлен на карточке " + i);
+                }
             }
         }
     }
 
-
-
+    public boolean isLikeActive(By likeButtonLocator) {
+        String state = webDriver.findElement(likeButtonLocator).getAttribute("data-state");
+        return "active".equals(state);
+    }
 
 
     public void scrollToElement(By elementLocator) {
         Actions actions = new Actions(webDriver);
         actions.moveToElement(webDriver.findElement(elementLocator)).perform();
     }
-
 
 
 }
