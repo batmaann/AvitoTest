@@ -36,10 +36,10 @@ public class CategoryTest  {
     }
 
     @Test
-    @DisplayName("Проверка категория")
-    @Description("null")
+    @DisplayName("Проверка лайков")
+    @Description("Проставление 6 лайков на карточках гланой страницы")
     public void addFavoriteInMain() {
-        mainPage.clickLikeOnFreeCards();
+        mainPage.clickLikeOnCards1(18);
 
 
 
