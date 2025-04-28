@@ -6,23 +6,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Sleeper;
 
-
-import java.io.File;
 import java.time.Duration;
 
 import static avito.appConfig.AppConfig.base_URL;
 import static java.lang.Thread.sleep;
 
-public class CategoryTest {
+public class MainPageTest {
     WebDriver driver = new FirefoxDriver();
     MainPage mainPage = new MainPage(driver);
     Actions actions = new Actions(driver);
@@ -36,24 +29,22 @@ public class CategoryTest {
     }
 
     @Test
-    @DisplayName("Проверка категория")
-    @Description("null")
-    public void choiceCategory() {
+    @DisplayName("Проверка лайков")
+    @Description("Проставление n лайков на карточках гланой страницы")
+    public void addFavoriteInMain() {
+        mainPage.clickLikeOnCards1(18);
 
-        mainPage.actionStepBefore();
+    }
 
-//        Sleeper sleeper = Sleeper.SYSTEM_SLEEPER;
+    //        Sleeper sleeper = Sleeper.SYSTEM_SLEEPER;
 //        try {
 //            sleeper.sleep(Duration.ofSeconds(5)); // Работает в Selenium 4.3+
 //        } catch (InterruptedException e) {
 //            Thread.currentThread().interrupt();
 //            throw new RuntimeException("Sleep interrupted", e);
 //        }
-
-    }
-
     @After
     public void clean() {
-        driver.quit();
+        // driver.quit();
     }
 }
