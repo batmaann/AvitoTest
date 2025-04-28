@@ -1,5 +1,7 @@
 package avito.pageObject;
 
+import avito.appConfig.BaseConfigTest;
+import avito.appConfig.BaseLogicPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -7,7 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
-public class MainPage {
+public class MainPage extends BaseLogicPage<MainPage> {
     public MainPage(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
@@ -52,16 +54,17 @@ public class MainPage {
     }
 
     //кусов говвна
-    public void clickElement(By elementLocator) {
+    public MainPage clickElement(By elementLocator) {
         webDriver.findElement(elementLocator).click();
+        return this;
     }
 
 
     public void actionStepBefore() {
         try {
+            clickElement(beforeButton);
             clickElement(goodButton);
             clickElement(leaveThisButtton);
-            clickElement(beforeButton);
             clickElement(yesButton);
             clickElement(closeInfoButton);
         } catch (Exception e) {

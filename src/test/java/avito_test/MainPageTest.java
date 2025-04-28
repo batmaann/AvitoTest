@@ -32,10 +32,20 @@ public class MainPageTest extends BaseConfigTest {
     @Test
     @DisplayName("Проверка лайков")
     @Description("Проставление n лайков на карточках гланой страницы")
-    public void addFavoriteInMain() {
+    public void addFavoriteInMainTest() {
         mainPage.clickLikeOnCards1(18);
 
     }
+
+    //В работе
+    @Test
+    @DisplayName("Проверка страницы Авто")
+    @Description("Переход на страницу раздела Авто, проверка, возврат назад")
+    public void moveToPageAuto() {
+
+
+    }
+
 
     //        Sleeper sleeper = Sleeper.SYSTEM_SLEEPER;
 //        try {

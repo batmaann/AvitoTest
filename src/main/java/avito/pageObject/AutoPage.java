@@ -13,4 +13,5 @@ public class AutoPage {
     WebDriver webDriver;
     //локаторы
     private By AutoElement = By.xpath("//*[contains(@title, 'Авито — сайт объявлений об автомобилях')]");
+
 }
