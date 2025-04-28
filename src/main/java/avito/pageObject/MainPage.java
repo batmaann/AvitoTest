@@ -34,6 +34,10 @@ public class MainPage {
     private By likeInCardButton = By.xpath("//div[contains(@class, 'styles-item-')][" + sequenceNumber + "]//*[@data-marker='favorite']");
     private By cardOnTheMainPage = By.xpath("//div[contains(@class, 'styles-item-')]");
 
+    //Кнопки категорий
+    private By cardAutoPageElement = By.xpath("//*[contains(@data-marker, 'image-Авто')]");
+
+
     //методы
     public void clickСategoriesButton() {
         webDriver.findElement(categoriesButton).click();
@@ -55,9 +59,9 @@ public class MainPage {
 
     public void actionStepBefore() {
         try {
-            clickElement(beforeButton);
-            clickElement(leaveThisButtton);
             clickElement(goodButton);
+            clickElement(leaveThisButtton);
+            clickElement(beforeButton);
             clickElement(yesButton);
             clickElement(closeInfoButton);
         } catch (Exception e) {
