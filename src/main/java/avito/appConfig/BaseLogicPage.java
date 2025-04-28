@@ -6,14 +6,18 @@ import org.openqa.selenium.WebDriver;
 
 public class BaseLogicPage<T> {
 
-    WebDriver webDriver;
+    protected WebDriver webDriver;
     protected T pageClassObj;
+
+    public BaseLogicPage(WebDriver webDriver) {
+        this.webDriver = webDriver;
+    }
 
     public void BaseConfigTest() {
         this.pageClassObj = (T) this;
     }
 
-    public T clickElement(By elementLocator) {
+    public T click(By elementLocator) {
         webDriver.findElement(elementLocator).click();
         return (T) this;
     }

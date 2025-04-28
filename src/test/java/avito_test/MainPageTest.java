@@ -33,7 +33,7 @@ public class MainPageTest extends BaseConfigTest {
     @DisplayName("Проверка лайков")
     @Description("Проставление n лайков на карточках гланой страницы")
     public void addFavoriteInMainTest() {
-        mainPage.clickLikeOnCards1(18);
+        mainPage.clickLikeOnCards(18);
 
     }
 
