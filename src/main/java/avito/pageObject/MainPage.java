@@ -14,9 +14,6 @@ import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
 public class MainPage extends BaseLogicPage<MainPage> {
-    //    public MainPage(WebDriver webDriver) {
-//        this.webDriver = webDriver;
-//    }
     private final WebDriverWait wait;
 
     public MainPage(WebDriver webDriver) {
@@ -27,7 +24,6 @@ public class MainPage extends BaseLogicPage<MainPage> {
 
     int sequenceNumber;
 
-    WebDriver webDriver;
     //локаторы
 
     //локаторы before
@@ -64,11 +60,6 @@ public class MainPage extends BaseLogicPage<MainPage> {
         webDriver.findElement(realtyСategoryButton).click();
     }
 
-    //кусов говвна
-    public MainPage clickElement(By elementLocator) {
-        webDriver.findElement(elementLocator).click();
-        return this;
-    }
 
 
     public void actionStepBefore() {
