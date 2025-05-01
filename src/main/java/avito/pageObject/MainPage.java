@@ -1,20 +1,29 @@
 package avito.pageObject;
 
+import avito.appConfig.BaseConfigTest;
+import avito.appConfig.BaseLogicPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
-public class MainPage {
+public class MainPage extends BaseLogicPage<MainPage> {
+    private final WebDriverWait wait;
+
     public MainPage(WebDriver webDriver) {
+        super(webDriver); // Важно: передаём драйвер в родительский класс
         this.webDriver = webDriver;
+        this.wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
     }
 
     int sequenceNumber;
 
-    WebDriver webDriver;
     //локаторы
 
     //локаторы before
@@ -34,6 +43,10 @@ public class MainPage {
     private By likeInCardButton = By.xpath("//div[contains(@class, 'styles-item-')][" + sequenceNumber + "]//*[@data-marker='favorite']");
     private By cardOnTheMainPage = By.xpath("//div[contains(@class, 'styles-item-')]");
 
+    //Кнопки категорий
+    private By cardAutoPageElement = By.xpath("//*[contains(@data-marker, 'image-Авто')]");
+
+
     //методы
     public void clickСategoriesButton() {
         webDriver.findElement(categoriesButton).click();
@@ -47,19 +60,15 @@ public class MainPage {
         webDriver.findElement(realtyСategoryButton).click();
     }
 
-    //кусов говвна
-    public void clickElement(By elementLocator) {
-        webDriver.findElement(elementLocator).click();
-    }
 
 
     public void actionStepBefore() {
         try {
-            clickElement(beforeButton);
-            clickElement(leaveThisButtton);
-            clickElement(goodButton);
-            clickElement(yesButton);
-            clickElement(closeInfoButton);
+            click(beforeButton);
+            click(goodButton);
+            //click(leaveThisButtton);
+            click(yesButton);
+            click(closeInfoButton);
         } catch (Exception e) {
             System.out.println("[WARN] Не удалось закрыть всплывающие окно: " + e.getMessage());
         }
@@ -74,50 +83,42 @@ public class MainPage {
     }
 
 
-    public void clickLikeOnCards1(int countLikes) {
+    public void clickLikeOnCards(int countLikes) {
         for (int i = 1; i <= countLikes; i++) {
             By likeInCardButton = By.xpath("//div[contains(@class, 'styles-item-')][" + i + "]//*[@data-marker='favorite']");
-            boolean isClicked = false;
-            int attempts = 0;
+            try {
+                WebElement likeButton = webDriver.findElement(likeInCardButton);
+                wait.until(ExpectedConditions.visibilityOf(likeButton));
+                likeButton.click();
 
-            while (!isClicked && attempts < 5) {
-                try {
-                    clickElement(likeInCardButton);
-                    isClicked = true;
-                } catch (NoSuchElementException e) {
-                    System.out.println("[INFO] Элемент " + i + " не найден, скроллим к нему...");
-                    scrollToElement(likeInCardButton); // Скроллим к элементу
-                    attempts++;
-                }
-            }
-            if (!isClicked) {
-                System.out.println("[WARN] Не удалось найти и кликнуть по элементу с номером " + i);
-            } else {
-                // ➡️ После успешного клика проверяем, что лайк активирован
                 if (isLikeActive(likeInCardButton)) {
                     System.out.println("[INFO] Лайк успешно поставлен на карточке " + i);
                 } else {
-                    System.out.println("[ERROR] Лайк НЕ был поставлен на карточке " + i);
+                    System.out.println("[WARN] Лайк не активирован на карточке " + i);
                 }
+            } catch (Exception e) {
+                System.out.println("[ERROR] Не удалось поставить лайк на карточке " + i + ": " + e.getMessage());
             }
         }
     }
 
     public boolean isLikeActive(By likeButtonLocator) {
-        String state = webDriver.findElement(likeButtonLocator).getAttribute("data-state");
-        return "active".equals(state);
+        try {
+            WebElement likeElement = webDriver.findElement(likeButtonLocator);
+            String state = likeElement.getAttribute("data-state");
+            return "active".equals(state);
+        } catch (NoSuchElementException e) {
+            System.out.println("[WARN] Элемент лайка не найден: " + likeButtonLocator);
+            return false;
+        } catch (Exception e) {
+            System.out.println("[ERROR] Ошибка проверки состояния лайка: " + e.getMessage());
+            return false;
+        }
     }
-
 
     public void scrollToElement(By elementLocator) {
         Actions actions = new Actions(webDriver);
         actions.moveToElement(webDriver.findElement(elementLocator)).perform();
     }
 
-
 }
-
-
-
-
-

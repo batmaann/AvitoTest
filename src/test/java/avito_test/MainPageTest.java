@@ -1,5 +1,6 @@
 package avito_test;
 
+import avito.appConfig.BaseConfigTest;
 import avito.pageObject.MainPage;
 import jdk.jfr.Description;
 import org.junit.After;
@@ -15,7 +16,7 @@ import java.time.Duration;
 import static avito.appConfig.AppConfig.base_URL;
 import static java.lang.Thread.sleep;
 
-public class MainPageTest {
+public class MainPageTest extends BaseConfigTest {
     WebDriver driver = new FirefoxDriver();
     MainPage mainPage = new MainPage(driver);
     Actions actions = new Actions(driver);
@@ -31,20 +32,30 @@ public class MainPageTest {
     @Test
     @DisplayName("Проверка лайков")
     @Description("Проставление n лайков на карточках гланой страницы")
-    public void addFavoriteInMain() {
-        mainPage.clickLikeOnCards1(18);
+    public void addFavoriteInMainTest() {
+        mainPage.clickLikeOnCards(18);
 
     }
 
+    //В работе
+    @Test
+    @DisplayName("Проверка страницы Авто")
+    @Description("Переход на страницу раздела Авто, проверка, возврат назад")
+    public void moveToPageAuto() {
+
+
+    }
+
+
     //        Sleeper sleeper = Sleeper.SYSTEM_SLEEPER;
 //        try {
-//            sleeper.sleep(Duration.ofSeconds(5)); // Работает в Selenium 4.3+
+//            sleeper.sleep(Duration.ofSeconds(5));
 //        } catch (InterruptedException e) {
 //            Thread.currentThread().interrupt();
 //            throw new RuntimeException("Sleep interrupted", e);
 //        }
     @After
     public void clean() {
-        // driver.quit();
+         driver.quit();
     }
 }
