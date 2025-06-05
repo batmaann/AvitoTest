@@ -19,26 +19,9 @@ public class BaseHttp {
     }
 
 
-
-
     public ValidatableResponse doGetRequest(String baseUrl) {
         RequestSpecification request = given(baseRequest());
         return request.get(baseUrl).then();
-    }
-
-
-    public ValidatableResponse doGetRequestUser(String baseUrl, String email, String password, String name, String token) {
-        RequestSpecification request = given(baseRequest());
-        //request.body(body);
-        return request.given().auth().oauth2(token).get(baseUrl).then();
-
-    }
-
-
-    public ValidatableResponse doPostRequest(String baseUrl, Object body, String token) {
-        RequestSpecification request = given(baseRequest());
-        request.body(body);
-        return request.given().auth().oauth2(token).post(baseUrl).then();
     }
 
 

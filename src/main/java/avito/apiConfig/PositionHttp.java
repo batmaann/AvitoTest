@@ -1,10 +1,10 @@
 package avito.apiConfig;
 
 import avito.BaseHttp;
-import avito.baseurl.BaseUrl;
 import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
 
+import static avito.baseurl.BaseUrl.*;
 
 public class PositionHttp extends BaseHttp {
     private final String url;
@@ -13,9 +13,10 @@ public class PositionHttp extends BaseHttp {
         super();
         url = baseurl;
     }
-    @Step("Определение позиции")
+
+    @Step("Определение позиции POST")
     public ValidatableResponse definitionPosition(PositionData positionData) {
-        return doPostRequest(url  , positionData);
+        return doPostRequest(url + POSITION_URL, positionData);
 
     }
 
