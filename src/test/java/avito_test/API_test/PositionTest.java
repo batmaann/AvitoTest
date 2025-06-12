@@ -12,13 +12,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class PositionTest {
-    int status = 400;
+    int status = 200;
     private final PositionHttp positionHttp = new PositionHttp(BaseUrl.BASE_URL);
 
     @Test
     @Description("")
     public void testGeoposition() {
-        PositionData request = new PositionData("", 4.5, 5.0);
+        PositionData request = new PositionData("", 16, null, null, null, 59.938784, 30.314997, true);
         ValidatableResponse response = positionHttp.definitionPosition(request);
         assertThat(response.extract().statusCode(), equalTo(status));
         RestAssured.given().log().all();

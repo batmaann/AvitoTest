@@ -1,24 +1,96 @@
 package avito.apiConfig;
 
 public class PositionData {
-    private String name;
+    private String addressId;
+    private int zoom;
+    private String esid;
+    private String params;
+    private String itemId;
     private double latitude;
     private double longitude;
+    private boolean getAddress;
 
-    // Конструкторы, геттеры и сеттеры
-    public PositionData(String name, double latitude, double longitude) {
-        this.name = name;
+
+    public PositionData(String addressId, int zoom, String esid, String params, String itemId, double latitude, double longitude, boolean getAddress) {
+        this.addressId = addressId;
+        this.zoom = zoom;
+        this.esid = esid;
+        this.params = params;
+        this.itemId = itemId;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.getAddress = getAddress;
+    }
+
+    public PositionData(double latitude, double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.zoom = 16; // значение по умолчанию
+        this.getAddress = true; // значение по умолчанию
     }
 
     // Геттеры и сеттеры
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getAddressId() {
+        return addressId;
+    }
 
-    public double getLatitude() { return latitude; }
-    public void setLatitude(double latitude) { this.latitude = latitude; }
+    public void setAddressId(String addressId) {
+        this.addressId = addressId;
+    }
 
-    public double getLongitude() { return longitude; }
-    public void setLongitude(double longitude) { this.longitude = longitude; }
+    public int getZoom() {
+        return zoom;
+    }
+
+    public void setZoom(int zoom) {
+        this.zoom = zoom;
+    }
+
+    public String getEsid() {
+        return esid;
+    }
+
+    public void setEsid(String esid) {
+        this.esid = esid;
+    }
+
+    public Object getParams() {
+        return params;
+    }
+
+    public void setParams(String params) {
+        this.params = params;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public boolean isGetAddress() {
+        return getAddress;
+    }
+
+    public void setGetAddress(boolean getAddress) {
+        this.getAddress = getAddress;
+    }
 }
