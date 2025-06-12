@@ -93,4 +93,5 @@ public class PositionData {
     public void setGetAddress(boolean getAddress) {
         this.getAddress = getAddress;
     }
+
 }
