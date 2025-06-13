@@ -22,12 +22,6 @@ public class PositionData {
         this.getAddress = getAddress;
     }
 
-    public PositionData(double latitude, double longitude) {
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.zoom = 16; // значение по умолчанию
-        this.getAddress = true; // значение по умолчанию
-    }
 
     // Геттеры и сеттеры
     public String getAddressId() {
@@ -84,10 +78,6 @@ public class PositionData {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
-    }
-
-    public boolean isGetAddress() {
-        return getAddress;
     }
 
     public void setGetAddress(boolean getAddress) {
