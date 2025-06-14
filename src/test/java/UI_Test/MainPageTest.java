@@ -1,4 +1,4 @@
-package avito_test;
+package UI_Test;
 
 import avito.appConfig.BaseConfigTest;
 import avito.pageObject.MainPage;
