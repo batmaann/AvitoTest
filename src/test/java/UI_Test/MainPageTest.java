@@ -46,14 +46,6 @@ public class MainPageTest extends BaseConfigTest {
 
     }
 
-
-    //        Sleeper sleeper = Sleeper.SYSTEM_SLEEPER;
-//        try {
-//            sleeper.sleep(Duration.ofSeconds(5));
-//        } catch (InterruptedException e) {
-//            Thread.currentThread().interrupt();
-//            throw new RuntimeException("Sleep interrupted", e);
-//        }
     @After
     public void clean() {
          driver.quit();
