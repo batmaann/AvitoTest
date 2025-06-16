@@ -14,7 +14,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 @RunWith(Parameterized.class)
 public class PositionTest {
-    int status = 200;
+    // int status = 200;
     private final PositionHttp positionHttp = new PositionHttp(BaseUrl.BASE_URL);
 
     private final String addressId;
@@ -25,6 +25,7 @@ public class PositionTest {
     private final double latitude;
     private final double longitude;
     private final boolean getAddress;
+    private final int status;
 
     public PositionTest(String addressId, int zoom, String esid, String params, String itemId, double latitude, double longitude, boolean getAddress, int status) {
         this.addressId = addressId;
