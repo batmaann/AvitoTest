@@ -9,14 +9,13 @@ import org.junit.Test;
 import io.restassured.response.ValidatableResponse;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 @RunWith(Parameterized.class)
 public class PositionTest {
-    // int status = 200;
     private final PositionHttp positionHttp = new PositionHttp(BaseUrl.BASE_URL);
-
     private final String addressId;
     private final int zoom;
     private final String esid;
@@ -26,8 +25,9 @@ public class PositionTest {
     private final double longitude;
     private final boolean getAddress;
     private final int status;
+    private final String expectedAddress;
 
-    public PositionTest(String addressId, int zoom, String esid, String params, String itemId, double latitude, double longitude, boolean getAddress, int status) {
+    public PositionTest(String addressId, int zoom, String esid, String params, String itemId, double latitude, double longitude, boolean getAddress, int status, String expectedAddress) {
         this.addressId = addressId;
         this.zoom = zoom;
         this.esid = esid;
@@ -37,26 +37,29 @@ public class PositionTest {
         this.longitude = longitude;
         this.getAddress = getAddress;
         this.status = status;
+        this.expectedAddress = expectedAddress;
     }
 
     @Parameterized.Parameters
     public static Object[] data() {
         return new Object[][]{
-                {"", 16, null, null, null, 59.938784, 30.314997, true, 200},
-                {"", 16, null, null, null, 55.755814, 37.617635, true, 200},
-                {"", 16, null, null, null, 43.585525, 39.723062, true, 200},
-                {"", 16, null, null, null, 56.326887, 44.005986, true, 200},
-                {"", 16, null, null, null, 51.768199, 55.096955, true, 200},
-                {"", 16, null, null, null, 44.208799, 43.13834, true, 200}
+                {"", 16, null, null, null, 59.938784, 30.314997, true, 200, "Санкт-Петербург, Дворцовая площадь"},
+                {"", 16, null, null, null, 55.755814, 37.617635, true, 200, "Москва, проезд Воскресенские Ворота"},
+                {"", 16, null, null, null, 43.585525, 39.723062, true, 200, "Краснодарский край, Сочи, площадь Флага"},
+                {"", 16, null, null, null, 56.326887, 44.005986, true, 200, "Нижний Новгород, Варварская улица"},
+                {"", 16, null, null, null, 51.768199, 55.096955, true, 200, "Оренбург, улица Михаила Фадеева"},
+                {"", 16, null, null, null, 44.208799, 43.13834, true, 200, "Ставропольский край, Минеральные Воды, проспект 22-го Партсъезда"}
         };
     }
 
     @Test
-    @Description("")
+    @Description("Проверка геопозиции на разных городах со статусом код 200 и проверкой города")
     public void testGeoposition() {
         PositionData request = new PositionData(addressId, zoom, esid, params, itemId, latitude, longitude, getAddress);
         ValidatableResponse response = positionHttp.definitionPosition(request);
         assertThat(response.extract().statusCode(), equalTo(status));
+        String actualAddress = response.extract().path("address");
+        assertThat(actualAddress, equalTo(expectedAddress));
         RestAssured.given().log().all();
     }
 }
