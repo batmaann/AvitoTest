@@ -47,6 +47,9 @@ public class MainPage extends BaseLogicPage<MainPage> {
     private By cardAutoPageElement = By.xpath("//*[contains(@data-marker, 'image-Авто')]");
 
 
+    //Сторисы
+    private By storiesButton =  By.xpath("//*[contains(@class, 'preview-item-imageContainer-YQYOs') ]");
+
     //методы
     public void clickСategoriesButton() {
         webDriver.findElement(categoriesButton).click();
